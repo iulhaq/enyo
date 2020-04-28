@@ -1,0 +1,30 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/boot-and-delete-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_nova_failure'
+
+injectors:
+  - name: nova-failure-node
+    type: software
+    host: compute
+    command: 'pkill -SIGKILL -f nova-compute'
+    time: 200
+  # - name: nova-failure-node1
+  #   type: software
+  #   host: d52-54-77-77-01-01.virtual.cloud.suse.de
+  #   command: 'pkill -SIGKILL -f nova-api'
+  #   time: 200
+  # - name: nova-failure-node3
+  #   type: software
+  #   host: d52-54-77-77-01-03.virtual.cloud.suse.de
+  #   command: 'pkill -SIGKILL -f nova-api'
+  #   time: 200
+
+monitors:
+  - name: nova-monitor
+    host: compute
+    command: 'systemctl is-active openstack-nova-compute'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/nova-monitor'
+

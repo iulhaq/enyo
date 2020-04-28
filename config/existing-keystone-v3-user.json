@@ -1,0 +1,18 @@
+{
+    "openstack": {
+        "auth_url": "http://192.168.122.2:5000/v3/",
+        "region_name": "CustomRegion",
+        "endpoint_type": "public",
+        "users": [
+            {
+                "username": "crowbar",
+                "password": "crowbar",
+                "user_domain_name": "Default",
+                "project_name": "openstack",
+                "project_domain_name": "Default"
+            }
+        ],
+        "https_insecure": false,
+        "https_cacert": ""
+    }
+}

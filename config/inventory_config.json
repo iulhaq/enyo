@@ -1,0 +1,13 @@
+{
+    "openstack_deployment": {
+    "deployment_map": "/home/ihti/thesis/code/enyo/config/deployment.json",
+    "deployment_ssh": {
+      "ansible_ssh_common_args": "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+      "ansible_ssh_pass": "linux",
+      "ansible_user": "root",
+      "ansible_become": "true"
+    },
+    "name": "test",
+    "groups": {}
+    }
+}

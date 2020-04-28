@@ -1,0 +1,24 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/boot-and-delete-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_rabbitmq_failure.html'
+
+injectors:
+  - name: rabbitmq-failure-node1
+    type: software
+    host: d52-54-77-77-01-01.virtual.cloud.suse.de
+    command: 'pkill -SIGKILL -f rabbitmq_server'
+    time: 180
+  - name: rabbitmq-failure-node3
+    type: software
+    host: d52-54-77-77-01-03.virtual.cloud.suse.de
+    command: 'pkill -SIGKILL -f rabbitmq_server'
+    time: 180
+
+monitors:
+  - name: rabbitmq-monitor
+    host: controller
+    command: 'rabbitmqctl status | grep pid'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/rabbitmq-monitor'

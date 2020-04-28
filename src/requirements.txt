@@ -1,0 +1,3 @@
+ansible
+rally
+rally-openstack # for plugins

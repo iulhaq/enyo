@@ -1,0 +1,24 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/boot-and-delete-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_haproxy_failure.html'
+
+injectors:
+  - name: haproxy-failure-node1
+    type: software
+    host: d52-54-77-77-01-01.virtual.cloud.suse.de
+    command: 'pkill -SIGKILL -f haproxy-systemd'
+    time: 200
+  - name: haproxy-failure-node3
+    type: software
+    host: d52-54-77-77-01-03.virtual.cloud.suse.de
+    command: 'pkill -SIGKILL -f haproxy-systemd'
+    time: 200
+
+monitors:
+  - name: haproxy-monitor
+    host: controller
+    command: 'systemctl is-active haproxy'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/haproxy-monitor'

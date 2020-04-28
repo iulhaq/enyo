@@ -1,0 +1,25 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/boot-and-delete-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_neutron-openvswitch-agent_failure.html'
+
+injectors:
+  - name: neutron-openvswitch-agent-failure-node1
+    type: software
+    host: d52-54-77-77-01-01.virtual.cloud.suse.de
+    command: 'pkill -SIGKILL -f neutron-openvswitch-agent'
+    time: 150
+  - name: neutron-openvswitch-agent-failure-node3
+    type: software
+    host: d52-54-77-77-01-03.virtual.cloud.suse.de
+    command: 'pkill -SIGKILL -f neutron-openvswitch-agent'
+    time: 150
+
+monitors:
+  - name: neutron-openvswitch-agent-monitor
+    host: controller
+    command: 'systemctl is-active openstack-neutron-openvswitch-agent'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/neutron-openvswitch-agent-monitor'
+

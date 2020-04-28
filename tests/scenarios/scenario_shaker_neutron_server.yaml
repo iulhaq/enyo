@@ -1,0 +1,21 @@
+loader:
+  type: shaker
+  host_ip: 192.168.122.1:31999
+  # deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/perf_l3_east_west.yaml'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/shaker_neutron_server_failures_report.html'
+  log_file: '/home/ihti/thesis/code/enyo/tests/logs/shaker.log'
+
+injectors:
+  - name: neutron-server-failure
+    type: software
+    host: controller
+    command: 'pkill -SIGKILL -f neutron-server'
+    time: 60
+
+monitors:
+  - name: neutron-server-monitor
+    host: controller
+    command: 'systemctl is-active openstack-neutron'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/neutron-server-monitor'

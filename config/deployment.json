@@ -1,0 +1,76 @@
+[
+    {
+        "groups": [
+            "compute"
+        ],
+        "ip": "192.168.124.83",
+        "mac": "52:54:77:77:01:04",
+        "name": "d52-54-77-77-01-04.virtual.cloud.suse.de",
+        "type": "vm",
+        "ansible_ssh_variables": {
+            "ansible_user": "root",
+            "ansible_ssh_pass": "linux",
+            "ansible_ssh_common_args": "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+            "ansible_become": "false"
+        }
+    },{
+        "groups": [
+            "compute"
+        ],
+        "ip": "192.168.124.81",
+        "mac": "52:54:77:77:01:05",
+        "name": "d52-54-77-77-01-05.virtual.cloud.suse.de",
+        "type": "vm",
+        "ansible_ssh_variables": {
+            "ansible_user": "root",
+            "ansible_ssh_pass": "linux",
+            "ansible_ssh_common_args": "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+            "ansible_become": "false"
+        }
+    },
+    {
+        "groups": [
+            "controller"
+        ],
+        "ip": "192.168.124.84",
+        "mac": "52:54:77:77:01:01",
+        "name": "d52-54-77-77-01-01.virtual.cloud.suse.de",
+        "type": "vm",
+        "ansible_ssh_variables": {
+            "ansible_user": "root",
+            "ansible_ssh_pass": "linux",
+            "ansible_ssh_common_args": "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+            "ansible_become": "false"
+        }
+    },
+    {
+        "groups": [
+            "controller"
+        ],
+        "ip": "192.168.124.85",
+        "mac": "52:54:77:77:01:02",
+        "name": "d52-54-77-77-01-02.virtual.cloud.suse.de",
+        "type": "vm",
+        "ansible_ssh_variables": {
+            "ansible_user": "root",
+            "ansible_ssh_pass": "linux",
+            "ansible_ssh_common_args": "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+            "ansible_become": "false"
+        }
+    },
+    {
+        "groups": [
+            "controller"
+        ],
+        "ip": "192.168.124.82",
+        "mac": "52:54:77:77:01:03",
+        "name": "d52-54-77-77-01-03.virtual.cloud.suse.de",
+        "type": "vm",
+        "ansible_ssh_variables": {
+            "ansible_user": "root",
+            "ansible_ssh_pass": "linux",
+            "ansible_ssh_common_args": "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null",
+            "ansible_become": "false"
+        }
+    }
+]

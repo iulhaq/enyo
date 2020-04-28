@@ -1,0 +1,36 @@
+loader:
+  type: shaker
+  host_ip: 192.168.122.1:31999
+  # deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/scenarios/perf_l2.yaml'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/shaker_single_bond_failures.html'
+  log_file: '/home/ihti/thesis/code/enyo/tests/logs/shaker.log'
+
+injectors:
+  - name: node4-bond-failure
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node4 cloud-4-0 down'
+    time: 640
+  - name: node5-bond-failure
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node5 cloud-5-0 down'
+    time: 680
+  - name: node4-bond-recover
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node4 cloud-4-0 up'
+    time: 700
+  - name: node5-bond-recover
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node5 cloud-5-0 up'
+    time: 710
+
+monitors:
+  - name: ping-monitor
+    host: localhost
+    command: 'ping -w2 -c1 192.168.124.83'
+    interval: 5
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/monitor.json'

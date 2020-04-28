@@ -1,0 +1,18 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/scenarios/create-and-delete-volume-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_cinder_api_failure.html'
+
+injectors:
+  - name: cinder-failure-node1
+    type: software
+    host: controller
+    command: 'pkill -SIGKILL -f cinder-api'
+    time: 110
+
+monitors:
+  - name: cinder-monitor
+    host: controller
+    command: 'systemctl show -p SubState openstack-cinder-api'
+    interval: 5

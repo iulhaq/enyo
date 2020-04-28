@@ -1,0 +1,49 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/boot-and-delete-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_bond_failure'
+
+injectors:
+  - name: node1-bond-failure
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node1 cloud-1-0 down'
+    time: 200
+  - name: node2-bond-failure
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node2 cloud-2-0 down'
+    time: 200
+  - name: node3-bond-failure
+    type: network
+    host: localhost
+    command: 'sudo virsh domif-setlink cloud-node3 cloud-3-0 down'
+    time: 200
+  # - name: node4-bond-recover
+  #   type: network
+  #   host: localhost
+  #   command: 'sudo virsh domif-setlink cloud-node4 cloud-4-0 up'
+  #   time: 200
+  # - name: node5-bond-recover
+  #   type: network
+  #   host: localhost
+  #   command: 'sudo virsh domif-setlink cloud-node5 cloud-5-0 up'
+  #   time: 200
+
+monitors:
+  - name: ping-monitor-node-2
+    host: localhost
+    command: 'ping -w2 -c1 192.168.124.85'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/ping_monitor.json'
+  - name: ping-monitor-node-1
+    host: localhost
+    command: 'ping -w2 -c1 192.168.124.84'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/ping_monitor.json'
+  - name: ping-monitor-node-3
+    host: localhost
+    command: 'ping -w2 -c1 192.168.124.82'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/ping_monitor.json'

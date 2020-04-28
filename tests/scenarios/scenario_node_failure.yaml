@@ -1,0 +1,34 @@
+loader:
+  type: rally
+  deployment_name: mydeployment
+  scenario_file: '/home/ihti/thesis/code/enyo/tests/workloads/boot-and-delete-for-duration.json'
+  report_file: '/home/ihti/thesis/code/enyo/tests/reports/rally_report_node_failure'
+
+injectors:
+  - name: node1-bond-failure
+    type: hardware
+    host: d52-54-77-77-01-02.virtual.cloud.suse.de
+    command: 'SuSEfirewall2 close'
+    time: 200
+  - name: node1-bond-recover
+    type: hardware
+    host: d52-54-77-77-01-02.virtual.cloud.suse.de
+    command: 'SuSEfirewall2 stop'
+    time: 260
+  # - name: node4-bond-recover
+  #   type: network
+  #   host: localhost
+  #   command: 'sudo virsh domif-setlink cloud-node4 cloud-4-0 up'
+  #   time: 200
+  # - name: node5-bond-recover
+  #   type: network
+  #   host: localhost
+  #   command: 'sudo virsh domif-setlink cloud-node5 cloud-5-0 up'
+  #   time: 200
+
+monitors:
+  - name: ping-monitor-node-2
+    host: localhost
+    command: 'ping -w2 -c1 192.168.124.85'
+    interval: 2
+    output: '/home/ihti/thesis/code/enyo/tests/logs/monitors/ping_monitor.json'
